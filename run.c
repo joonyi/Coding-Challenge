@@ -7,12 +7,11 @@
 #define MAXWORDS	888
 #define MAXSTRING	888
 
-struct st { 
+struct st { //this struct keeps track word frequency of entire file
     char s[MAXSTRING];
     int count;
 };
-struct detail
-{
+struct detail { //this struct counts unique word per tweet
     char word[MAXSTRING];
     int freq;
 };
@@ -46,7 +45,6 @@ void modify_format (char *s) {
 	int	i;
 	for (i=0; s[i]; i++) {
 		if (!keybo_char (s[i])) {
-			//remove_char (s, i);
 			while (s[i]) {
 				i++;
 				s[i-1] = s[i];
@@ -73,15 +71,13 @@ void print_struct_array(struct st *array, size_t len, FILE *f)
 		if(array[i].count==0) j++;
 		else break;
 	}
-	fseek(f, 0, SEEK_SET);  //go back to the beginning of file to starte writting
+	fseek(f, 0, SEEK_SET);  //go back to the beginning of file to start writting
 	for(i=j; i<len; i++){
         printf("%s\t\t  %d\n", array[i].s, array[i].count);//printout result
 		fprintf(f, "%s\t\t %d\n", array[i].s, array[i].count);//write into wc_output.txt
-		//repeat  += array[i].repeat ;		
+		
 	}
 	puts("---------- ");
-	//printf("repeat: %d\n", repeat);//display repeat 
-    //puts("----------\n");
 } 
 
 double median(int n, int x[]) {
@@ -139,7 +135,7 @@ int main(int argc, char *argv[]){
 	FILE *f;
 	FILE *f2;
 	FILE *f3;
-    char ch;
+    	char ch;
 /****Change the path name here****************/
 	char text_name[MAXSTRING]= "./tweet_input/"; 
 	char input_path[MAXSTRING] = "./tweet_input/"; 
@@ -205,8 +201,7 @@ int main(int argc, char *argv[]){
 					count = update(s2, unit, count); //count unique word
 					j = 0;
 				}
-			}			
-			//printf("count: %d ", count);
+			}
 			x[k]=count;		
 			k++; 
 			//printf("\tunique word: %d\n",count);
@@ -214,7 +209,7 @@ int main(int argc, char *argv[]){
 		    fprintf(f3, "%.1f\n",median(k,x)); //write to ft2
 
 			num_word=0; //reset word counter after each tweet
-			memset(string,0,strlen(string)); //reset memory for tweet
+			memset(string,0,strlen(string)); //reset memory to go for next tweet
 		}
 		if(ch==' ')  { //count number of word after separators
 			num_word++;
