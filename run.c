@@ -205,8 +205,8 @@ int main(int argc, char *argv[]){
 			x[k]=count;		
 			k++; 
 			//printf("\tunique word: %d\n",count);
-			printf("%.1f\n",median(k,x));
-		    fprintf(f3, "%.1f\n",median(k,x)); //write to ft2
+			printf("%.2f\n",median(k,x));
+		    fprintf(f3, "%.2f\n",median(k,x)); //write to ft2
 
 			num_word=0; //reset word counter after each tweet
 			memset(string,0,strlen(string)); //reset memory to go for next tweet
