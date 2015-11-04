@@ -1,0 +1,27 @@
+//bottom left corner A,B,E,F 
+//top right C,D,G,H
+
+class Solution {
+public:
+    int computeArea(int A, int B, int C, int D, int E, int F, int G, int H) {
+        int  areaA = (C-A)*(D-B);
+        int  areaB = (G-E)*(H-F);
+        
+        int64_t  left = max(A, E); 
+        int64_t  down = max(B, F);
+        int64_t  right = min(C,G);
+        int64_t  up = min(D,H);
+        
+        int  overlap=0;
+        int64_t  xa = (up - down);
+        int64_t  ya = (right - left); 
+        
+        if(up>down && right>left){
+            overlap = xa*ya;
+        }
+        
+        return areaA + areaB - overlap;
+         
+ 
+    }
+};
