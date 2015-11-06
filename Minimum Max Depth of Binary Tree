@@ -22,7 +22,7 @@ public:
                 myQueue.pop();
                 if (node->left) myQueue.push(node->left);
                 if (node->right) myQueue.push(node->right);
-                if (node->left==NULL && node->right==NULL) return depth;
+                if (node->left==NULL && node->right==NULL) return depth;//delete this line if find max
             }
         }
         return depth;
