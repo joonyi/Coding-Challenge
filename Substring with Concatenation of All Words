@@ -1,0 +1,33 @@
+class Solution {
+public:
+    vector<int> findSubstring(string s, vector<string>& words) {
+ 
+      map<string, int> CompareWords;  
+      map<string, int> count;  
+      for(int i =0; i< words.size(); i++) {  
+        CompareWords[words[i]]+=1;  
+      }  
+      vector<int> result;  
+      int numWords = words.size();  
+      if(numWords ==0) return result;  
+      int wordLen = words[0].size();  
+      for(int i =0; i< (int)s.size() - numWords*wordLen+1; i++) {  
+        count.clear();
+        int j=0;
+        for(; j< numWords; j++)  {  
+          string sub = s.substr(i+j*wordLen, wordLen);  
+          if(CompareWords.find(sub) != CompareWords.end())  {  
+            count[sub]+=1;  
+          }
+          else  
+            break;  
+          if(count[sub] > CompareWords[sub])  {  
+            break;  
+          }
+        }
+        if(j == numWords)  
+          result.push_back(i);  
+      }
+      return result;  
+    }
+};
