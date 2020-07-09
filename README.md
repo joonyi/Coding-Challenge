@@ -1,4 +1,4 @@
-# Coding-Challenge
+# Coding Challenge in C
 
 To Compile and Run the Program:
 (1) gcc run.c -o run
